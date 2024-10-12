@@ -1,0 +1,404 @@
+package MyProjectForms;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import java.sql.*;
+
+import static java.awt.event.KeyEvent.VK_T;
+
+public class Home_page extends JFrame implements ActionListener
+{
+    //constructor
+    /*Home_page()
+    {
+    setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    setTitle("Welcome");
+    setSize(400, 200);
+    }*/
+
+    JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10;
+    Font f,f1,f2;
+    JPanel p1;
+
+    Home_page() {
+        super("Home Page");
+        setSize(1600, 900);
+        setLocation(0, 0);
+
+        f = new Font("Lucida Fax", Font.BOLD, 20);
+        f1 = new Font("MS UI Gothic", Font.BOLD, 18);
+        f2 = new Font("Gadugi", Font.BOLD, 35);
+
+        ImageIcon ic = new ImageIcon(ClassLoader.getSystemResource("MyProjectForms/Icons/Gym_dboard_img.jfif"));
+        Image img = ic.getImage().getScaledInstance(1600, 900, Image.SCALE_DEFAULT);
+        ImageIcon ic1 = new ImageIcon(img);
+        l1 = new JLabel(ic1);
+
+        //l2 = new JLabel("WELCOME TO FITNESS POINT");
+
+        JMenuBar m1 = new JMenuBar(); // Menu Bar
+
+        // First Menu and its items and item's ImageIcon
+        JMenu menu1 = new JMenu("Master");
+        JMenuItem men_itm1 = new JMenuItem("Add Trainer");
+        JMenuItem men_itm2 = new JMenuItem("Add Customer");
+
+        //First item's men_itm1 ImageIcon
+        ImageIcon ic2 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img2 = ic2.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        ImageIcon ic3 = new ImageIcon(img2);
+        men_itm1.setIcon(ic3);
+        men_itm1.setMnemonic('T');
+        men_itm1.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+
+        //men_itm2 ImageIcon
+        ImageIcon ic4 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img3 = ic4.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm2.setIcon(new ImageIcon(img3));
+        men_itm2.setMnemonic('C');
+        men_itm2.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+
+        //Second Menu and its items and item's ImageIcon
+        JMenu menu2 = new JMenu("Attendance");
+        JMenuItem men_itm3 = new JMenuItem("Trainer Attendance");
+        JMenuItem men_itm4 = new JMenuItem(("Customer Attendance"));
+
+
+        //men_itm3 ImageIcon
+        ImageIcon ic5 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img4 = ic5.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm3.setIcon(new ImageIcon(img4));
+        men_itm3.setMnemonic('A');
+        men_itm3.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+
+        //men_itm4 ImageIcon
+        ImageIcon ic6 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img5 = ic6.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm4.setIcon(new ImageIcon(img5));
+        men_itm4.setMnemonic('W');
+        men_itm4.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W, ActionEvent.CTRL_MASK));
+
+        //Third menu its items and item's ImageIcon
+        JMenu menu3 = new JMenu("Personal Information");
+        JMenuItem men_itm5 = new JMenuItem("Trainer Information");
+        JMenuItem men_itm6 = new JMenuItem(("Customer Information"));
+
+        //men_itm5 ImageIcon
+        ImageIcon ic7 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img6 = ic7.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm5.setIcon(new ImageIcon(img6));
+        men_itm5.setMnemonic('R');
+        men_itm5.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
+
+        //men_itm6 ImageIcon
+        ImageIcon ic8 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img7 = ic8.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm6.setIcon(new ImageIcon(img7));
+        men_itm6.setMnemonic('E');
+        men_itm6.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+
+        //Fourth menu its items and item's ImageIcon
+        JMenu menu4 = new JMenu("Update Information");
+        JMenuItem men_itm7 = new JMenuItem("Update Trainer");
+        JMenuItem men_itm8 = new JMenuItem(("Update Customer"));
+
+        //men_itm7 ImageIcon
+        ImageIcon ic9 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img8 = ic9.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm7.setIcon(new ImageIcon(img8));
+        men_itm7.setMnemonic('u');
+        men_itm7.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK));
+
+        //men_itm8 ImageIcon
+        ImageIcon ic10 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img9 = ic10.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm8.setIcon(new ImageIcon(img9));
+        men_itm8.setMnemonic('I');
+        men_itm8.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
+
+        //Fifth menu its items and item's ImageIcon
+        JMenu menu5 = new JMenu("Fee Information");
+        JMenuItem men_itm9 = new JMenuItem("Trainer Fee");
+        JMenuItem men_itm10 = new JMenuItem(("Customer Fee"));
+
+        //men_itm9 ImageIcon
+        ImageIcon ic11 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img10 = ic11.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm9.setIcon(new ImageIcon(img10));
+        men_itm9.setMnemonic('S');
+        men_itm9.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+
+        //men_itm10 ImageIcon
+        ImageIcon ic12 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img11 = ic12.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm10.setIcon(new ImageIcon(img11));
+        men_itm10.setMnemonic('F');
+        men_itm10.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, ActionEvent.CTRL_MASK));
+
+        //Sixth menu its items and item's ImageIcon
+        JMenu menu6 = new JMenu("All Details");                  //extra
+        JMenuItem men_itm11 = new JMenuItem("Gym Details");
+        JMenuItem men_itm12 = new JMenuItem(("Gym Gadgets"));
+
+        //men_itm11 ImageIcon
+        ImageIcon ic13 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img12 = ic13.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm11.setIcon(new ImageIcon(img12));
+        men_itm11.setMnemonic('D');
+        men_itm11.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+
+        //men_itm12 ImageIcon
+        ImageIcon ic14 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img13 = ic14.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm12.setIcon(new ImageIcon(img13));
+        men_itm12.setMnemonic('P');
+        men_itm12.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+
+        //seventh menu and it's items
+        JMenu menu7 = new JMenu("Exit");
+        JMenuItem men_itm13 = new JMenuItem("Exit");
+
+        //men_itm13 ImageIcon
+        ImageIcon ic15 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img14 = ic15.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm13.setIcon(new ImageIcon(img14));
+        men_itm13.setMnemonic('Z');
+        men_itm13.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
+
+        //Eightth menu its items and item's ImageIcon
+        JMenu menu8 = new JMenu("Excercise Routine");                  //extra
+        JMenuItem men_itm14 = new JMenuItem("Excercise Images");
+        JMenuItem men_itm15 = new JMenuItem(("BMR Calculator"));
+
+        //men_itm11 ImageIcon
+        ImageIcon ic16 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img15 = ic16.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm14.setIcon(new ImageIcon(img15));
+        men_itm14.setMnemonic('3');
+        men_itm14.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_3, ActionEvent.CTRL_MASK));
+
+        //men_itm12 ImageIcon
+        ImageIcon ic17 = new ImageIcon(ClassLoader.getSystemResource(""));
+        Image img16 = ic17.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+        men_itm15.setIcon(new ImageIcon(img16));
+        men_itm15.setMnemonic('4');
+        men_itm15.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_4, ActionEvent.CTRL_MASK));
+
+
+        //Adding menu items in the menu
+        menu1.add(men_itm1);
+        menu1.add(men_itm2);
+
+        menu2.add(men_itm3);
+        menu2.add(men_itm4);
+
+        menu3.add(men_itm5);
+        menu3.add(men_itm6);
+
+        menu4.add(men_itm7);
+        menu4.add(men_itm8);
+
+        menu5.add(men_itm9);
+        menu5.add(men_itm10);
+
+        menu6.add(men_itm11);
+        menu6.add(men_itm12);
+
+        menu7.add(men_itm13);
+
+        menu8.add(men_itm14);
+        menu8.add(men_itm15);
+
+        //Adding menu in the menubar
+        m1.add(menu1);
+        m1.add(menu2);
+        m1.add(menu3);
+        m1.add(menu4);
+        m1.add(menu5);
+        m1.add(menu6);
+        m1.add(menu8);
+        m1.add(menu7);
+
+        //Set font of the menu
+        menu1.setFont(f);
+        menu2.setFont(f);
+        menu3.setFont(f);
+        menu4.setFont(f);
+        menu5.setFont(f);
+        menu6.setFont(f);
+        menu7.setFont(f);
+        menu8.setFont(f);
+
+        //Set font of menu items
+        men_itm1.setFont(f1);
+        men_itm2.setFont(f1);
+        men_itm3.setFont(f1);
+        men_itm4.setFont(f1);
+        men_itm5.setFont(f1);
+        men_itm6.setFont(f1);
+        men_itm7.setFont(f1);
+        men_itm8.setFont(f1);
+        men_itm9.setFont(f1);
+        men_itm10.setFont(f1);
+        men_itm11.setFont(f1);
+        men_itm12.setFont(f1);
+        men_itm13.setFont(f1);
+        men_itm14.setFont(f1);
+        men_itm15.setFont(f1);
+
+        //Color of menubar
+        m1.setBackground(Color.BLACK);
+
+        //Color of menu writing
+        menu1.setForeground(Color.WHITE);
+        menu2.setForeground(Color.WHITE);
+        menu3.setForeground(Color.WHITE);
+        menu4.setForeground(Color.WHITE);
+        menu5.setForeground(Color.WHITE);
+        menu6.setForeground(Color.WHITE);
+        menu7.setForeground(Color.RED);
+        menu8.setForeground(Color.WHITE);
+
+        //Background Color of menu items
+        men_itm1.setBackground(Color.BLACK);
+        men_itm2.setBackground(Color.BLACK);
+        men_itm3.setBackground(Color.BLACK);
+        men_itm4.setBackground(Color.BLACK);
+        men_itm5.setBackground(Color.BLACK);
+        men_itm6.setBackground(Color.BLACK);
+        men_itm7.setBackground(Color.BLACK);
+        men_itm8.setBackground(Color.BLACK);
+        men_itm9.setBackground(Color.BLACK);
+        men_itm10.setBackground(Color.BLACK);
+        men_itm11.setBackground(Color.BLACK);
+        men_itm12.setBackground(Color.BLACK);
+        men_itm13.setBackground(Color.BLACK);
+        men_itm14.setBackground(Color.BLACK);
+        men_itm15.setBackground(Color.BLACK);
+
+
+        //Color of menu items writing
+        men_itm1.setForeground(Color.YELLOW);
+        men_itm2.setForeground(Color.YELLOW);
+        men_itm3.setForeground(Color.YELLOW);
+        men_itm4.setForeground(Color.YELLOW);
+        men_itm5.setForeground(Color.YELLOW);
+        men_itm6.setForeground(Color.YELLOW);
+        men_itm7.setForeground(Color.YELLOW);
+        men_itm8.setForeground(Color.YELLOW);
+        men_itm9.setForeground(Color.YELLOW);
+        men_itm10.setForeground(Color.YELLOW);
+        men_itm11.setForeground(Color.YELLOW);
+        men_itm12.setForeground(Color.YELLOW);
+        men_itm13.setForeground(Color.RED);
+        men_itm14.setForeground(Color.YELLOW);
+        men_itm15.setForeground(Color.YELLOW);
+
+        //Action Listeners of menu items
+        men_itm1.addActionListener(this);
+        men_itm2.addActionListener(this);
+        men_itm3.addActionListener(this);
+        men_itm4.addActionListener(this);
+        men_itm5.addActionListener(this);
+        men_itm6.addActionListener(this);
+        men_itm7.addActionListener(this);
+        men_itm8.addActionListener(this);
+        men_itm9.addActionListener(this);
+        men_itm10.addActionListener(this);
+        men_itm11.addActionListener(this);
+        men_itm12.addActionListener(this);
+        men_itm13.addActionListener(this);
+        men_itm14.addActionListener(this);
+        men_itm15.addActionListener(this);
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setJMenuBar(m1);
+        add(l1);
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+        String command = e.getActionCommand();
+
+        if(command.equals("Add Trainer"))
+        {
+            new Add_Trainer().setVisible(true);
+        }
+
+        else if(command.equals("Add Customer"))
+        {
+            new Add_Customer().setVisible(true);
+        }
+        else if(command.equals("Trainer Attendance"))
+        {
+            new Trainer_Attendance().setVisible(true);
+        }
+        else if(command.equals("Customer Attendance"))
+        {
+            new Customer_Attendance().setVisible(true);
+        }
+        else if(command.equals("Trainer Information"))
+        {
+            new Trainer_Information().setVisible(true);
+        }
+        else if(command.equals("Customer Information"))
+        {
+            new Customer_Information().setVisible(true);
+        }
+        else if(command.equals("Update Trainer"))
+        {
+            new Update_trainer().setVisible(true);
+        }
+        else if(command.equals("Update Customer"))
+        {
+            new Update_customer().setVisible(true);
+        }
+        else if(command.equals("Trainer Fee"))
+        {
+            new Trainer_Fees().setVisible(true);
+        }
+        else if(command.equals("Customer Fee"))
+        {
+            new Customer_Fees().setVisible(true);
+        }
+        else if(command.equals("Exit"))
+        {
+            System.exit(0);
+        };/*
+        else if(command.equals("Gym Details"))
+        {
+            new Gym_Details().setVisible(true);
+        }
+            else if(command.equals("Gym Gadgets"));
+            {
+                new Gym_Gadgets().setVisible(true);
+            }
+            else if(command.equals("Exercise Images"));
+            {
+                new Exercise_Images().setVisible(true);
+            }
+            else if(command.equals("BMR Calculator"));
+            {
+                new BMR_Calculator().setVisible(true);
+            }*/
+
+
+
+
+    }
+
+
+
+    public static void main(String[] args)
+    {
+        new Home_page().setVisible(true);
+    }
+
+
+
+}
+
+
+
+
